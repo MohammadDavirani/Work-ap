@@ -14,11 +14,27 @@ public class StackProject {
         String str = input.nextLine();
 
         Stack<Character> stack = new Stack<>();
-        int strLength = str.length();
-        char character;
-        for(int i=0;i<strLength;i++) {
-            character = str.charAt(i);
-            stack.push(character);
+        char temp;
+        boolean balance = true;
+
+        for (int i = 0; i < str.length(); i++) {
+            temp = str.charAt(i);
+            if (temp == '(') {
+                stack.push(temp);
+            } else if (temp == ')') {
+                if (stack.isEmpty()) {
+                    balance = false;
+                    break;
+                }
+                stack.pop();
+            }
+        }
+
+        if (balance && stack.isEmpty()) {
+            System.out.println("The required number of parentheses has been inserted.");
+        }
+        else {
+            System.out.println("The required number of parentheses is <<NOT>> included.");
         }
     }
 }
